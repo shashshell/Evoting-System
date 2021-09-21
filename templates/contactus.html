@@ -1,0 +1,335 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+ <html class="no-js"> 
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>E-Voting</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+	<link rel="shortcut icon" href="favicon.ico">
+      <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'> -->
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="{% static 'css/superfish.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Modernizr JS -->
+	<script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+   </head>
+	<style>
+            input[type=text], input[type=password], input[type=email] {
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            margin-top: 6px; 
+            margin-bottom: 16px; 
+            resize: vertical ;
+            }
+            body {
+                text-align: center;
+            }
+            form {
+                display: inline-block;
+            }
+            input[type=submit] {
+            background-color: #010541;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            }
+            input[type=submit]:hover {
+            background-color: #dc1005;
+            }
+            img.set {
+            width: 40%;
+            height: auto;
+            }
+    </style>
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="{%static 'images/loading.gif'%}" alt="" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+          <div class="container-fluid">
+            <div class="row">
+               <div class="col-lg-3 logo_section">
+                  <div class="full">
+                     {% comment %} <div class="center-desk">
+                        <div class="logo"> <a href="{% static 'index.html' %}"><img src="{% static 'images/logo.png' %}" alt="#"></a> </div>
+                     </div> {% endcomment %}
+                  </div>
+               </div>
+               <div class="col-lg-9">
+                  <div class="menu-area">
+                     <div class="limit-box">
+                        <nav class="main-menu">
+                           <ul class="menu-area-main">
+                              <!-- <li class="active">
+                                 <a href="/">Home</a>
+                              </li> -->
+                              <!-- <li>
+                                 <a href="/aboutus">About</a>
+                              </li> -->
+                              
+                              <!-- <li>
+                                 <a href="/contactus">Contact us</a>
+                              </li> -->
+
+                              {% if user.is_authenticated %}
+                              
+                              <li>
+                                 <a href="/logout">Logout</a>
+                              </li>
+                              
+                              
+                              
+                              {% else %}
+
+                              <li>
+                                 <a href="/login">Login</a>
+                              </li>
+                              <li>
+                                 <a href="/register">Register</a>
+                              </li>
+                               {% endif %}
+                               {% if user.is_authenticated %}
+                              <li class="active">
+                                 <a>Hello, {{user.username}}</a>
+                              </li>
+                               {% endif %}
+                              {% comment %} <li>
+                                 <a href="#"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a>
+                              </li> {% endcomment %}
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end header inner -->
+      </header>
+      <!-- end header -->
+      <div class="contact-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="contactheading">
+               <h3>contact Us</h3>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+      <!-- section -->
+      <section class="layout_padding">
+         <div class="container">
+           
+            
+            
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="full comment_form">
+                     <form action="contactus" method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                        <fieldset>
+                           <div class="col-md-12">
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <input type="text" name="name" placeholder="Name" required="#" />
+                                    <input type="email" name="email" placeholder="Email" required="#" />
+                                    <input type="password" name="password" placeholder="Email password" required="#" />
+                                    <input type="text" name="subject" placeholder="subject" required="#" />
+                                    <textarea class="wdt" name="body" placeholder="Comment"></textarea>
+
+
+                                    
+                                 <!-- </div>
+                                 <div class="col-md-6">
+                                    <textarea class="wdt" name="body" placeholder="Comment"></textarea>
+                                    
+                                 </div> -->
+                                 
+                              </div>
+                              <div class="row margin_top_30">
+                                 <div class="col-md-12">
+                                    <div class="center">
+                                       <button>Send</button>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </fieldset>
+                     </form>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end section -->
+      <!-- <ul class="contact_information"> -->
+         <!-- <li><span><img src="{% static 'images/location_icon.png' %}" alt="#" /></span><span class="text_cont">F.C.R.I.T. Vashi<br>Navi Mumbai</span></li> -->
+         <!-- <li><span class="text_cont">shriyad2303@gmail.com<br>snehaltagal23@gmail.com<br>reshmeshashwat@gmail.com<br>yogant.patil2001@gmail.com</span></li>
+      </ul> -->
+      {% comment %} <section>
+         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0;">
+                   <div class="map_section">
+                     <div id="map">
+                     </div>
+                   </div>
+                </div>
+            </div>
+         </div>
+      </section> {% endcomment %}
+      
+      <!-- footer -->
+      <footer>
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 text-center">
+							<p class="fh5co-social-icons">
+								<a href="#"><i class="icon-twitter2"></i></a>
+								<a href="#"><i class="icon-facebook2"></i></a>
+								<a href="#"><i class="icon-instagram"></i></a>
+								<a href="#"><i class="icon-dribbble2"></i></a>
+								<a href="#"><i class="icon-youtube"></i></a>
+							</p>
+							<p>Copyright 2016 Free Html5 <a href="#">Listing</a>. All Rights Reserved. <br>Made with <i class="icon-heart3"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+                  {% comment %} <ul class="social_icon">
+                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  </ul> {% endcomment %}
+               </div>
+               <div class="col-lg-2 col-md-6">
+                  <div class="footer_links">
+                     
+                  </div>
+               </div>
+               <!-- <div class="col-lg-3 col-md-6"> -->
+                  <!-- <div class="footer_links"> -->
+                     <!-- <h3>Github</h3> -->
+                     <!-- <ol>
+                        <li><a href="https://github.com/shashshell"></a>
+                        <a href="https://github.com/yogant18"></a>
+                        <a href="https://github.com/Shriyad2123"></a></li>
+                        <a href="https://github.com/Snehal2312"></a></li>
+                        <li></li>
+                     </ol> -->
+                  <!-- </div> -->
+               <!-- </div> -->
+               <!-- <div class="col-lg-3 col-md-6">
+                  <div class="footer_links">
+                     <h3>Contact us</h3>
+                     <form action="contactus" method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                        <fieldset>
+                           <div class="field">
+                              <input type="text" name="name" placeholder="Your Name" required="" />
+                           </div>
+                           <div class="field">
+                              <input type="email" name="email" placeholder="Email" required="" />
+                           </div>
+                           <div class="field">
+                              <input type="password" name="password" placeholder="Email password" required="" />
+                           </div>
+                           <div class="field">
+                              <input type="text" name="subject" placeholder="Subject" required="" />
+                           </div>
+                           <div class="field">
+                              <textarea name="body" placeholder="Message"></textarea>
+                           </div>
+                           
+                           <div class="field">
+                              <div class="center">
+                                 <button class="reply_bt">Send</button>
+                              </div>
+                           </div>
+                           
+                        </fieldset>
+                     </form>
+                  </div>
+               </div> -->
+            </div>
+         </div>
+      </footer>
+     
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="{%static 'js/jquery.min.js'%}"></script>
+      <script src="{%static 'js/popper.min.js'%}"></script>
+      <script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
+      <script src="{%static 'js/jquery-3.0.0.min.js'%}"></script>
+      <script src="{%static 'js/plugin.js'%}"></script>
+      <!-- Scrollbar Js Files -->
+      <script src="{%static 'js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
+      <script src="{%static 'js/custom.js'%}"></script>
+
+<script>
+
+      // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+      // Australia.
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          center: {lat: 40.645037, lng: -73.880224},
+          });
+
+        var image = 'images/maps-and-flags.png';
+        var beachMarker = new google.maps.Marker({
+          position: {lat: 40.645037, lng: -73.880224},
+          map: map,
+          icon: image
+        });
+      }
+    </script>
+
+
+   <!-- google map js -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
+      <!-- end google map js -->
+
+
+   </body>
+</html>
